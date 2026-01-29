@@ -355,6 +355,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-jupyter-book-locally">Building the jupyter book locally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-testing">Notebook testing</a></li>
 </ul>
             </nav>
         </div>
@@ -383,6 +384,10 @@ jupyter-book<span class="w"> </span>build<span class="w"> </span>.<span class="w
 </pre></div>
 </div>
 <p>The built book will be available in the <code class="docutils literal notranslate"><span class="pre">_build/html</span></code> folder. You can open the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file in your web browser to view it locally.</p>
+</section>
+<section id="notebook-testing">
+<h2>Notebook testing<a class="headerlink" href="#notebook-testing" title="Link to this heading">#</a></h2>
+<p>The repo includes a GitHub Actions workflow to automatically verify that the Jupyter notebooks listed in <code class="docutils literal notranslate"><span class="pre">testing/notebooks_to_test.txt</span></code> run through in combination with the <code class="docutils literal notranslate"><span class="pre">materials/environment.yml</span></code> conda environment. This as well as the computer setup instructions can be replaced by pixi based workflows.</p>
 </section>
 </section>
 
@@ -433,6 +438,7 @@ jupyter-book<span class="w"> </span>build<span class="w"> </span>.<span class="w
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-jupyter-book-locally">Building the jupyter book locally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-testing">Notebook testing</a></li>
 </ul>
   </nav></div>
 
