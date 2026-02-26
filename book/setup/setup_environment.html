@@ -331,9 +331,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -349,14 +347,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-conda-environment">Setting up your conda environment</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -368,37 +358,42 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="setting-up-a-python-environment">
 <h1>Setting up a python environment<a class="headerlink" href="#setting-up-a-python-environment" title="Link to this heading">#</a></h1>
-<p>Running the notebooks in this course requires a python environment with the necessary packages installed. This section explains how to set up the right environment using <code class="docutils literal notranslate"><span class="pre">conda</span></code> and the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file provided with this course.</p>
-<section id="setting-up-your-conda-environment">
-<h2>Setting up your conda environment<a class="headerlink" href="#setting-up-your-conda-environment" title="Link to this heading">#</a></h2>
-<p>Here we’re assuming you have already installed Miniforge and have opened a terminal window. If you haven’t done that yet, please follow the instructions <a class="reference internal" href="install_python.html"><span class="std std-doc">here</span></a>.</p>
-<ol class="arabic">
-<li><p>Open your terminal.</p>
-<ul class="simple">
-<li><p><strong>Windows</strong>: Open the “Miniforge Prompt” from your start menu</p></li>
-<li><p><strong>Mac OS</strong>: Open Terminal (you can search for it in spotlight - cmd + space)</p></li>
-<li><p><strong>Linux</strong>: Open your terminal application</p></li>
-</ul>
-</li>
-<li><p>The file <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> (<code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder) contains the dependencies needed to run the notebooks, and it specifies a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment named <code class="docutils literal notranslate"><span class="pre">labcourse-ia</span></code>. Create this environment from the file by copy pasting the following command (for convenvience, the environment file was made available online):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>https://gist.githubusercontent.com/m-albert/9d3d6af1051b35c92d1c7a56bd193560/raw/ac8c0aa071073794d2ec7f8ca31755917a5f4e9f/labcourse-ia-environment.yml
-</pre></div>
-</div>
-</li>
-<li><p>Once the environment setup has finished, activate the environment. If you successfully activated the environment, you should now see <code class="docutils literal notranslate"><span class="pre">(labcourse-ia)</span></code> to the left of your command prompt.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>labcourse-ia
-</pre></div>
-</div>
-</li>
-<li><p>Test that your notebook installation is working. We will be using notebook for interactive analysis. Enter the command below and it should launch jupyter notebook book in a web browser.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-lab
-</pre></div>
-</div>
-</li>
-</ol>
-<p>Jupyter Notebook will open in a browser window. If this worked, you can close the browser window again and stop the notebook server by going back to your terminal and pressing <code class="docutils literal notranslate"><span class="pre">CTRL-C</span></code> twice. Possibly, you will be asked to confirm that you want to shut down the server by entering <code class="docutils literal notranslate"><span class="pre">y</span></code> and pressing <code class="docutils literal notranslate"><span class="pre">ENTER</span></code>.</p>
-</section>
-</section>
+<p>Content to follow soon.</p>
+<!--
+
+Running the notebooks in this course requires a python environment with the necessary packages installed. This section explains how to set up the right environment using `conda` and the `environment.yml` file provided with this course.
+
+## Setting up your conda environment
+
+Here we're assuming you have already installed Miniforge and have opened a terminal window. If you haven't done that yet, please follow the instructions [here](install_python.md).
+
+1. Open your terminal.
+	- **Windows**: Open the "Miniforge Prompt" from your start menu
+	- **Mac OS**: Open Terminal (you can search for it in spotlight - cmd + space)
+	- **Linux**: Open your terminal application
+
+1. The file `environment.yml` (`notebooks` folder) contains the dependencies needed to run the notebooks, and it specifies a `conda` environment named `labcourse-ia`. Create this environment from the file by copy pasting the following command (for convenvience, the environment file was made available online):
+
+	```bash
+	conda env create -f https://gist.githubusercontent.com/m-albert/9d3d6af1051b35c92d1c7a56bd193560/raw/ac8c0aa071073794d2ec7f8ca31755917a5f4e9f/labcourse-ia-environment.yml
+	```
+
+1. Once the environment setup has finished, activate the environment. If you successfully activated the environment, you should now see `(labcourse-ia)` to the left of your command prompt.
+
+	```bash
+	conda activate labcourse-ia
+	```
+
+
+1. Test that your notebook installation is working. We will be using notebook for interactive analysis. Enter the command below and it should launch jupyter notebook book in a web browser.
+
+	```bash
+	jupyter-lab
+	```
+
+Jupyter Notebook will open in a browser window. If this worked, you can close the browser window again and stop the notebook server by going back to your terminal and pressing `CTRL-C` twice. Possibly, you will be asked to confirm that you want to shut down the server by entering `y` and pressing `ENTER`.
+
+--></section>
 
     <script type="text/x-thebe-config">
     {
@@ -454,21 +449,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-conda-environment">Setting up your conda environment</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
