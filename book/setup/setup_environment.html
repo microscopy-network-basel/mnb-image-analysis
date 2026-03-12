@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setting up a python environment &#8212; Introduction to (Bio-)Image Analysis with Python</title>
+    <title>Setting up a Python environment &#8212; Introduction to (Bio-)Image Analysis with Python</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -183,9 +183,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../schedule.html">Topics &amp; Schedule</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="computer_setup.html">Computer setup</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="download_example_data.html">Download data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install_python.html">Installing Python</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setting up a python environment</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setting up a Python environment</a></li>
 </ul>
 </details></li>
 </ul>
@@ -331,7 +330,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -342,11 +343,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setting up a python environment</h1>
+    <h1>Setting up a Python environment</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-the-notebook">Start the notebook</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -357,43 +366,52 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="setting-up-a-python-environment">
-<h1>Setting up a python environment<a class="headerlink" href="#setting-up-a-python-environment" title="Link to this heading">#</a></h1>
-<p>Content to follow soon.</p>
-<!--
-
-Running the notebooks in this course requires a python environment with the necessary packages installed. This section explains how to set up the right environment using `conda` and the `environment.yml` file provided with this course.
-
-## Setting up your conda environment
-
-Here we're assuming you have already installed Miniforge and have opened a terminal window. If you haven't done that yet, please follow the instructions [here](install_python.md).
-
-1. Open your terminal.
-	- **Windows**: Open the "Miniforge Prompt" from your start menu
-	- **Mac OS**: Open Terminal (you can search for it in spotlight - cmd + space)
-	- **Linux**: Open your terminal application
-
-1. The file `environment.yml` (`notebooks` folder) contains the dependencies needed to run the notebooks, and it specifies a `conda` environment named `labcourse-ia`. Create this environment from the file by copy pasting the following command (for convenvience, the environment file was made available online):
-
-	```bash
-	conda env create -f https://gist.githubusercontent.com/m-albert/9d3d6af1051b35c92d1c7a56bd193560/raw/ac8c0aa071073794d2ec7f8ca31755917a5f4e9f/labcourse-ia-environment.yml
-	```
-
-1. Once the environment setup has finished, activate the environment. If you successfully activated the environment, you should now see `(labcourse-ia)` to the left of your command prompt.
-
-	```bash
-	conda activate labcourse-ia
-	```
-
-
-1. Test that your notebook installation is working. We will be using notebook for interactive analysis. Enter the command below and it should launch jupyter notebook book in a web browser.
-
-	```bash
-	jupyter-lab
-	```
-
-Jupyter Notebook will open in a browser window. If this worked, you can close the browser window again and stop the notebook server by going back to your terminal and pressing `CTRL-C` twice. Possibly, you will be asked to confirm that you want to shut down the server by entering `y` and pressing `ENTER`.
-
---></section>
+<h1>Setting up a Python environment<a class="headerlink" href="#setting-up-a-python-environment" title="Link to this heading">#</a></h1>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://github.com/microscopy-network-basel/mnb-image-analysis/archive/refs/heads/main.zip">Download the repository</a>.</p></li>
+<li><p>Extract the content of the downloaded zip file.</p></li>
+<li><p>Open a terminal and change to the directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/mnb-image-analysis-main
+</pre></div>
+</div>
+</li>
+<li><p>Create the Python environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>install<span class="w"> </span>--all
+</pre></div>
+</div>
+<div class="admonition-what-happens admonition">
+<p class="admonition-title">What happens?</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The Python environment with all the dependencies is created in a sub-folder `.pixi`.
+You can activate the environment using:
+```bash
+pixi shell
+```
+And deactivate the environment with:
+```bash
+exit
+````
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<section id="start-the-notebook">
+<h2>Start the notebook<a class="headerlink" href="#start-the-notebook" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>In a terminal within the repository folder, i.e.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/mnb-image-analysis-main
+</pre></div>
+</div>
+</li>
+<li><p>Run following command to start Jupyter Lab:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This will open a browser for interactive coding in noteoboks.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -449,6 +467,21 @@ Jupyter Notebook will open in a browser window. If this worked, you can close th
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-the-notebook">Start the notebook</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
