@@ -1052,25 +1052,20 @@ Mean blob intensity: 191.16
 <h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
 <p>In this section, we will use all the tools we looked at in the previous section. You can copy &amp; paste some lines of code from the above sections easily. Googling the method/library name is also a great way of finding out about the usage and other possiblities, or asking your favourite Chatbot is also an option.</p>
 <ol class="arabic simple">
-<li><p>Open the image with the path “../../data/rab9a-egfp-slice-cropped.tif”. You can use any library you wish to open this data.</p></li>
-<li><p>How many channels does the image have? Extract all channels and visualize them.</p></li>
-<li><p>In the nuclei channel, find a suitable threshold (manual or automatic) and binarize the image. Visualize the binary image.</p></li>
+<li><p>An image has been loaded from <code class="docutils literal notranslate"><span class="pre">skimage.data.cells3d()</span></code> - this is a fluorescence image of cells and nuclei.</p></li>
+<li><p>How many channels and z-slices does the image have? Extract all channels and visualize them.</p></li>
+<li><p>For the nuclei channel, find a suitable threshold (manual or automatic) and binarize the image. Visualize the binary image.</p></li>
 <li><p>Create a label image from the binary image. Are there any objects you wish to remove?</p></li>
 <li><p>Count how many nuclei there are present in this image.</p></li>
-<li><p>What is the average expression of channel 2 in the nuclei?</p></li>
+<li><p>What is the average expression of channel 1 in the nuclei? (<strong>Note</strong>: python is 0-based, so channel 1 is actually channel 0!)</p></li>
+<li><p>Examine the cytoplasm channel. Could we use thresholding to create cell masks for this data?</p></li>
 </ol>
 <p>–&gt; Hint: you can set the label image to a raw image of a secondary channel to get measurements in that channel inside the objects of the first channel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from skimage import data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">data</span>
 
-<span class="c1"># img = data.cells3d()  # fluorescence image of shape (60, 2, 256, 256)</span>
-<span class="c1"># img_nuclei= img[30, 1]</span>
-<span class="c1"># img_cell = img[30, 0]</span>
-<span class="c1"># plt.imshow(img_nuclei, cmap=&quot;gray&quot;)</span>
-<span class="c1"># plt.show()</span>
-<span class="c1"># plt.imshow(img_cell, cmap=&quot;gray&quot;)</span>
-<span class="c1"># plt.show()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cells3d</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
