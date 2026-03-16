@@ -377,12 +377,13 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-images">Binary Images</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking">Masking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Questions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-objects-rois">Creating Objects (ROIs)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Questions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurements">Measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Questions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
@@ -476,7 +477,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "1db7cee6f1594f69bb02fd41b4fa2e59", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "957294aa16bf4a5884440191263f24bf", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Manual thresholding can work well in cases where the contrast between objects and background is quite clear, like in the case above. However, this is impractical to analyse many images, or when the correct threshold is not quite as clear.</p>
 </section>
@@ -640,7 +641,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e8b6cf033fc94e3c911d47eca63ad950", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "35e47e72495e405c8b8950b2d486b423", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="the-gaussian-filter">
@@ -669,7 +670,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e30675ffbeca4b71b42110f0790f2482", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "fc57853e4f9b414b875a8277a992f1d8", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Zooming in on the edges, the filter’s advantages becomes clearer.</p>
 <div class="cell docutils container">
@@ -707,7 +708,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "aac076f9bcca4a1f99e7b3b777f1ec31", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b5dc188eb4ee484997efc7174d25896e", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>We can set the mean, median and Gaussian filters side-by-side to examine which filter has what sort of effect on our noisy image.</p>
 <div class="cell docutils container">
@@ -751,7 +752,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7c8099f69242434fa83ec9e135b79bc2", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "02e65207837547fda3c69ac9a7ea5eac", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="gradient-sharpening-filters">
@@ -877,6 +878,16 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="id2">
+<h3>Questions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In a binary image, what does a value “0” represent, and what does a value of “1” represent?</p>
+<ul>
+<li><p>Could these values be different?</p></li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 <section id="creating-objects-rois">
 <h2>Creating Objects (ROIs)<a class="headerlink" href="#creating-objects-rois" title="Link to this heading">#</a></h2>
@@ -885,7 +896,8 @@ document.write(`
 <p>The following animation shows how a label image is created from a binary image. For computational reasons, we only need to examine the pixels above and to the left of the current pixel, as the pixel to the right will be processed next anyway. We avoid double pixel comparisons this way, leading to faster processing times.</p>
 <p><img alt="gif2.gif" src="../../_images/cca_gif.gif" /></p>
 <p>After a second pass, the final label image would look like the following.</p>
-<p><img alt="image.png" src="materials/image_processing/attachment:image.png" /></p>
+<a class="reference internal image-reference" href="../../_images/label_image_ex.png"><img alt="../../_images/label_image_ex.png" src="../../_images/label_image_ex.png" style="width: 80%;" />
+</a>
 <p><a class="reference external" href="https://medium.com/data-science/implementing-a-connected-component-labeling-algorithm-from-scratch-94e1636554f">Source</a></p>
 <p>Now, let’s take a look at what this would look like for our blobs image. <code class="docutils literal notranslate"><span class="pre">label2rgb</span></code> allows us to color the images in a way that shows each label with a different color. This allows us to visually distinguish between detected objects.</p>
 <div class="cell docutils container">
@@ -976,19 +988,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c27b3074488dbd3d8615e3953cf284d459aa35bb9542cda09ce3b53bf51b6828.png" src="../../_images/c27b3074488dbd3d8615e3953cf284d459aa35bb9542cda09ce3b53bf51b6828.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Labels to exclude (area &lt; 30): []
+<img alt="../../_images/ace0531c77a5e8500d6c2c4db1028b5c6a1f7a18f23bd4aff57128971b36dce0.png" src="../../_images/ace0531c77a5e8500d6c2c4db1028b5c6a1f7a18f23bd4aff57128971b36dce0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Labels to exclude (area &lt; 30): [32, 36, 59, 60]
 </pre></div>
 </div>
-<img alt="../../_images/c5fa95204914ef0cb3960fe5e590d7358179c7289cefbd3a804f40321252d6d0.png" src="../../_images/c5fa95204914ef0cb3960fe5e590d7358179c7289cefbd3a804f40321252d6d0.png" />
+<img alt="../../_images/4457b5836c4aa1129481fe04f63f4252b64cd6844838207bb3b4eed4131d2658.png" src="../../_images/4457b5836c4aa1129481fe04f63f4252b64cd6844838207bb3b4eed4131d2658.png" />
 </div>
 </div>
-</section>
-<section id="id2">
-<h3>Questions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Which step in the pipeline until this point do you think has the biggest influence on final segmentation?</p></li>
-</ul>
 </section>
 <section id="measurements">
 <h3>Measurements<a class="headerlink" href="#measurements" title="Link to this heading">#</a></h3>
@@ -997,7 +1003,7 @@ document.write(`
 <ul class="simple">
 <li><p>number of blobs</p></li>
 <li><p>average intensity per blob</p></li>
-<li><p>average area per of each blob</p></li>
+<li><p>average area per blob</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1027,6 +1033,15 @@ Mean blob intensity: 191.16
 </div>
 </div>
 </div>
+</section>
+<section id="id3">
+<h3>Questions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Which step in the pipeline until this point do you think has the biggest influence on final segmentation?</p></li>
+<li><p>Whats the difference between a binary image and a label image?</p></li>
+<li><p>Could a binary image be used to measure instead of label image as well? What would the result look like?</p></li>
+<li><p>If a smoothing filter is applied, how can that affect detected objects &amp; background?</p></li>
+</ul>
 </section>
 </section>
 <section id="exercise">
@@ -1142,12 +1157,13 @@ Mean blob intensity: 191.16
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-images">Binary Images</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking">Masking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Questions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-objects-rois">Creating Objects (ROIs)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing">Post-Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Questions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurements">Measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Questions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
