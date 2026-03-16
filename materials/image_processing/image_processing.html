@@ -419,7 +419,7 @@ document.write(`
 </div>
 <section id="thresholding">
 <h2>Thresholding<a class="headerlink" href="#thresholding" title="Link to this heading">#</a></h2>
-<p>Thresholding is a simple technique used to define a boundary at which pixels are classified into background and foreground. In general, pixels brighter than the threshold value are considered <strong>foreground</strong>, while pixels dimmer than the value are considered <strong>background</strong>. This results in a binary image, with all foreground pixels being classified as 1 (or 255), and all background pixels being considered 0.</p>
+<p>Thresholding is a simple technique used to define a boundary at which pixels are classified into background and foreground. In general, pixels brighter than the threshold value are considered <strong>foreground</strong>, while pixels dimmer than the value are considered <strong>background</strong>. This results in a binary image, with all foreground pixels being classified as 1, and all background pixels being considered 0.</p>
 <p>Thresholding is often the first step in image analysis. Once we seperate the image based upon this simple criteria, the computer can identify all objects in the foreground as objects of interest.</p>
 <section id="manual-thresholding">
 <h3>Manual Thresholding<a class="headerlink" href="#manual-thresholding" title="Link to this heading">#</a></h3>
@@ -440,9 +440,6 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/90fa12e001dc0a860ce16f4d2273ad925ae6cea17341132625d51af82b2baa24.png" src="../../_images/90fa12e001dc0a860ce16f4d2273ad925ae6cea17341132625d51af82b2baa24.png" />
 </div>
 </div>
 <p>Use the slider in the following execution to find a good threshold to separate the blobs from the background signal.</p>
@@ -476,8 +473,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "957294aa16bf4a5884440191263f24bf", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Manual thresholding can work well in cases where the contrast between objects and background is quite clear, like in the case above. However, this is impractical to analyse many images, or when the correct threshold is not quite as clear.</p>
 </section>
@@ -509,12 +504,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Otsu&#39;s threshold: 120
-</pre></div>
-</div>
-<img alt="../../_images/8c5f2198ecde2ac2dbe22539a1157c70e3d96ee988aac5564a13be9957d27291.png" src="../../_images/8c5f2198ecde2ac2dbe22539a1157c70e3d96ee988aac5564a13be9957d27291.png" />
-</div>
 </div>
 <p>The returned value is a global threshold for the <strong>entire</strong> image. If the image has uneven illumination, or other imaging artifacts that lead to distributed intensity values, this method can struggle to find an optimal value.</p>
 </section>
@@ -536,9 +525,6 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/8c7869625fa1f9a3d62641754fc7af2a83d378967edf53ae6a3a6820f5248f40.png" src="../../_images/8c7869625fa1f9a3d62641754fc7af2a83d378967edf53ae6a3a6820f5248f40.png" />
 </div>
 </div>
 <p>The following cell implements the local adaptive thresholding (<code class="docutils literal notranslate"><span class="pre">filters.threshold_local</span></code>). <strong>For each pixel</strong>, the algorithm examines at a neighborhood around it (controlled by the parameter <code class="docutils literal notranslate"><span class="pre">block_size</span></code>) and calculates a threshold based on the pixel intensities in that local window.</p>
@@ -571,9 +557,6 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/9cd365354a91f51038d55c9e5b135fff0f8bbbac1147566e77db85cd51990b86.png" src="../../_images/9cd365354a91f51038d55c9e5b135fff0f8bbbac1147566e77db85cd51990b86.png" />
 </div>
 </div>
 <p>There are numerous other thresholding methods that can deliver better results than Otsu’s method, such as Huang, Li or  Yen. These can be accessed with <code class="docutils literal notranslate"><span class="pre">filters.huang</span></code>, <code class="docutils literal notranslate"><span class="pre">filters.threshold_yen</span></code>, <code class="docutils literal notranslate"><span class="pre">filters.threshold_li</span></code>. Feel free to try these methods out in the Exercise at the end of this session.</p>
@@ -641,8 +624,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "35e47e72495e405c8b8950b2d486b423", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="the-gaussian-filter">
@@ -670,8 +651,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "fc57853e4f9b414b875a8277a992f1d8", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Zooming in on the edges, the filter’s advantages becomes clearer.</p>
 <div class="cell docutils container">
@@ -708,8 +687,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b5dc188eb4ee484997efc7174d25896e", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>We can set the mean, median and Gaussian filters side-by-side to examine which filter has what sort of effect on our noisy image.</p>
 <div class="cell docutils container">
@@ -752,8 +729,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "02e65207837547fda3c69ac9a7ea5eac", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="gradient-sharpening-filters">
@@ -798,9 +773,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/0944f9c3c590c54fba8f1a415ed8bbdd5b20819f9a08bc3d77da4337778bc431.png" src="../../_images/0944f9c3c590c54fba8f1a415ed8bbdd5b20819f9a08bc3d77da4337778bc431.png" />
-</div>
 </div>
 </section>
 </section>
@@ -840,12 +812,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Otsu&#39;s threshold: 120
-</pre></div>
-</div>
-<img alt="../../_images/8c5f2198ecde2ac2dbe22539a1157c70e3d96ee988aac5564a13be9957d27291.png" src="../../_images/8c5f2198ecde2ac2dbe22539a1157c70e3d96ee988aac5564a13be9957d27291.png" />
-</div>
 </div>
 <section id="masking">
 <h3>Masking<a class="headerlink" href="#masking" title="Link to this heading">#</a></h3>
@@ -873,9 +839,6 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/6a3c5ca3b56ea96a3bcb46bc92bd1b7f2baa61495a99866a2cacd111eaf62211.png" src="../../_images/6a3c5ca3b56ea96a3bcb46bc92bd1b7f2baa61495a99866a2cacd111eaf62211.png" />
 </div>
 </div>
 </section>
@@ -924,9 +887,6 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ecd1568863fab2c6d6ad962853c566df0c87fc188f22de908aa4ba45ad5deab9.png" src="../../_images/ecd1568863fab2c6d6ad962853c566df0c87fc188f22de908aa4ba45ad5deab9.png" />
 </div>
 </div>
 <section id="post-processing">
@@ -988,13 +948,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ace0531c77a5e8500d6c2c4db1028b5c6a1f7a18f23bd4aff57128971b36dce0.png" src="../../_images/ace0531c77a5e8500d6c2c4db1028b5c6a1f7a18f23bd4aff57128971b36dce0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Labels to exclude (area &lt; 30): [32, 36, 59, 60]
-</pre></div>
-</div>
-<img alt="../../_images/4457b5836c4aa1129481fe04f63f4252b64cd6844838207bb3b4eed4131d2658.png" src="../../_images/4457b5836c4aa1129481fe04f63f4252b64cd6844838207bb3b4eed4131d2658.png" />
-</div>
 </div>
 </section>
 <section id="measurements">
@@ -1023,13 +976,6 @@ document.write(`
 <span class="c1"># Print summary statistics</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean blob area: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">areas</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> pixels&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean blob intensity: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mean_intensities</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of blobs detected: 60
-Mean blob area: 370.05 pixels
-Mean blob intensity: 191.16
 </pre></div>
 </div>
 </div>
