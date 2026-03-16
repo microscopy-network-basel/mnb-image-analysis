@@ -372,7 +372,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gaussian-filter">The Gaussian Filter</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-sharpening-filters">Gradient / Sharpening Filters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sobel-filter">Sobel Filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laplacian-of-gaussian-log">Laplacian of Gaussian (LoG)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-gradient-filters">Further Gradient Filters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Questions</a></li>
 </ul>
 </li>
@@ -399,8 +399,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="block-3-preprocessing-basic-segmentation">
 <h1>Block 3: Preprocessing &amp; Basic Segmentation<a class="headerlink" href="#block-3-preprocessing-basic-segmentation" title="Link to this heading">#</a></h1>
 <p>In blocks 1 &amp; 2, we looked at what images are, and how they can be shown and handled in Python. In the following block, we dive more deeply into how to process an image post-acquisition.</p>
-<p>A common goal in bioimage analysis is to identify structures we care about, and ignore things from the background. We may want to detect the number of cells or nucle in an image, or count the number of fluorescent spots and measure their properties.</p>
-<p>#TODO: need more here about the workflow, why thresholding first, and then filters.</p>
+<p>A common goal in bioimage analysis is to identify structures we care about, and ignore things from the background. We may want to detect the number of cells or nuclei in an image, or count the number of fluorescent spots and measure their properties.</p>
+<p>A simple workflow is: <strong>threshold → clean → measure</strong>. We start with thresholding to separate foreground from background and get a rough idea of interesting objects. Then we use filtering and cleanup (e.g., smoothing or removing small objects) to reduce noise and fix small errors. After that, we can create objects (ROIs) and measure size, shape, and intensity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -408,7 +408,6 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">morphology</span><span class="p">,</span> <span class="n">measure</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tifffile</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">uniform_filter</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">widgets</span>
 <span class="c1"># import stackview</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">exposure</span>
@@ -451,7 +450,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">apply_threshold</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
-    
     <span class="c1"># Step 1 — Select all pixels brighter than the chosen threshold</span>
     <span class="n">bright_pixels</span> <span class="o">=</span> <span class="n">img_blobs</span> <span class="o">&gt;</span> <span class="n">threshold</span>
 
@@ -474,11 +472,12 @@ document.write(`
 
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a37d755180e94f1a97706bcb85c9f795", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "58034b59d5434b90a6a5dfca6e587b9a", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Manual thresholding can work well in cases where the contrast between objects and background is quite clear, like in the case above. However, this is impractical to analyse many images, or when the correct threshold is not quite as clear. Automatic thresholding can come from classic image analysis methods, such as Otsu, or from machine learning methods, such as pixel classifiers or deep learning classification. In the following sections, we will look at 2 automatic methods more closely. In Block 4, machine learning based classification methods will be shown.</p>
 </section>
@@ -493,7 +492,7 @@ document.write(`
 <span class="n">otsu_t_value_blobs</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">img_blobs</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Otsu&#39;s threshold: </span><span class="si">{</span><span class="n">otsu_t_value_blobs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># Choose only the pixels brigther than the Otsu threshold</span>
+<span class="c1"># Choose only the pixels brigher than the Otsu threshold</span>
 <span class="n">binary_image</span> <span class="o">=</span> <span class="n">img_blobs</span> <span class="o">&gt;</span> <span class="n">otsu_t_value_blobs</span>
 
 <span class="c1"># Display the original image and the binary image</span>
@@ -542,7 +541,7 @@ document.write(`
 <img alt="../../_images/8c7869625fa1f9a3d62641754fc7af2a83d378967edf53ae6a3a6820f5248f40.png" src="../../_images/8c7869625fa1f9a3d62641754fc7af2a83d378967edf53ae6a3a6820f5248f40.png" />
 </div>
 </div>
-<p>The following cell implements the local adaptive thresholding (<code class="docutils literal notranslate"><span class="pre">filters.threshold_local</span></code>). For each pixel, the algorithm examines at a neighborhood around it (controlled by the parameter <code class="docutils literal notranslate"><span class="pre">block_size</span></code>) and calculates a threshold based on the pixel intensities in that local window.</p>
+<p>The following cell implements the local adaptive thresholding (<code class="docutils literal notranslate"><span class="pre">filters.threshold_local</span></code>). <strong>For each pixel</strong>, the algorithm examines at a neighborhood around it (controlled by the parameter <code class="docutils literal notranslate"><span class="pre">block_size</span></code>) and calculates a threshold based on the pixel intensities in that local window.</p>
 <p>The block size determines a window of (<code class="docutils literal notranslate"><span class="pre">block_size</span></code> x <code class="docutils literal notranslate"><span class="pre">block_size</span></code>) means the threshold is looking at a larger window/subset of the image to compute a threshold, while a smaller block size indicates a smaller window size. Set the block_size to different values to see how that changes the thresholding output.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -551,14 +550,15 @@ document.write(`
 <span class="n">mask_otsu</span> <span class="o">=</span> <span class="n">img_blobs_shaded</span> <span class="o">&gt;</span> <span class="n">otsu_t_value_shaded</span>
 
 <span class="c1"># Local threshold</span>
+<span class="n">block_size_value</span> <span class="o">=</span> <span class="mi">61</span>  <span class="c1"># Change this value to adjust the block size </span>
 <span class="n">local_t_value</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">threshold_local</span><span class="p">(</span>
-    <span class="n">img_blobs_shaded</span><span class="p">,</span> <span class="n">block_size</span><span class="o">=</span><span class="mi">61</span> <span class="c1"># Change the block_size here</span>
+    <span class="n">img_blobs_shaded</span><span class="p">,</span> <span class="n">block_size</span><span class="o">=</span><span class="n">block_size_value</span>
 <span class="p">)</span>  
 <span class="n">mask_local</span> <span class="o">=</span> <span class="n">img_blobs_shaded</span> <span class="o">&gt;</span> <span class="n">local_t_value</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
+<span class="c1"># ------</span>
 <span class="c1"># Show all 3 side-by-side, plotting code</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_blobs_shaded</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Uneven illumination&quot;</span><span class="p">)</span>
 
@@ -582,8 +582,8 @@ document.write(`
 <h3>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>When thresholding, what do “Background” and “Foreground” refer to?</p></li>
-<li><p>Is that different to whats commonly referred to as “Background” in Bio-Images resulting from e.g. indirect immunofluorescence labeling?</p></li>
-<li><p>When would you use manual thresholding, when an algorithm based approach (e.g.”Otsu”)?</p></li>
+<li><p>Is that different to what’s commonly referred to as “background” in bio-images resulting from e.g. indirect immunofluorescence labeling?</p></li>
+<li><p>When would you use manual thresholding, and when an algorithm based approach (e.g.”Otsu”)?</p></li>
 <li><p>Why does the block size in local thresholding need to be an odd number?</p></li>
 </ul>
 </section>
@@ -638,20 +638,18 @@ document.write(`
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
     
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="c1"># plt.show()</span>
-    <span class="c1"># TODO: why does it show twice? </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c23b16cd668842e7ba60a031fdad613a", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e8b6cf033fc94e3c911d47eca63ad950", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="the-gaussian-filter">
 <h3>The Gaussian Filter<a class="headerlink" href="#the-gaussian-filter" title="Link to this heading">#</a></h3>
 <p>A fundamental technique is the <strong>Gaussian Blur</strong>. This technique also places a kernel over the image and moves it across the image, but it handles neighboring pixels differently than the mean or median filters. Instead of treating all pixels around the center equally, the Gaussian weighs nearer pixels more heavily than pixels further away. The weights follow a Gaussian distribution. In this case, pixels close to the center of the addressed pixel neighborhood influence the result strongly, while the pixels at the end of the neighborhood don’t contribute as much.</p>
 <p>In practice, the parameter that controls the filter is called <span class="math notranslate nohighlight">\(\sigma\)</span>. Smaller <span class="math notranslate nohighlight">\(\sigma\)</span> values result in slight smoothing, while higher values result in strong blurring.</p>
-<p>Gaussian blur is very useful for noisy images and can smooth these images very effectively.</p>
+<p>Gaussian blur is very useful for <strong>noisy</strong> images and can <em>smooth</em> these images very effectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
@@ -672,7 +670,48 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a12cfe4b272b44f3aa3e19cf55ca637e", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2e477f5e3c604bea8910ddf494951791", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>Zooming in on the edges, the filter’s advantages becomes clearer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">interact</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">noisy_blobs_image</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="nd">@interact</span><span class="p">(</span>
+    <span class="n">sigma</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">),</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">w</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;x (pan)&quot;</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">h</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;y (pan)&quot;</span><span class="p">),</span>
+    <span class="n">half_size</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;zoom area&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_gaussian_filter</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">half_size</span><span class="p">):</span>
+    <span class="n">image_gaussian</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">noisy_blobs_image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+
+    <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="n">half_size</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">half_size</span><span class="p">)</span>
+    <span class="n">y0</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="n">half_size</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">half_size</span><span class="p">)</span>
+
+    <span class="c1"># --------</span>
+    <span class="c1"># Plotting code</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">noisy_blobs_image</span><span class="p">[</span><span class="n">y0</span><span class="p">:</span><span class="n">y1</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span><span class="n">x1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original (zoomed)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_gaussian</span><span class="p">[</span><span class="n">y0</span><span class="p">:</span><span class="n">y1</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span><span class="n">x1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gaussian Filter (sigma=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "aac076f9bcca4a1f99e7b3b777f1ec31", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>We can set all three filtered images side-by-side. As the images were wrapped in interactive blocks before, we need to recompute the outputs once again. The filter size and sigma can be changed at the top of the cell.</p>
 <div class="cell docutils container">
@@ -703,7 +742,6 @@ document.write(`
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="c1"># TODO: zoom in</span>
 </pre></div>
 </div>
 </div>
@@ -770,37 +808,9 @@ Gy = [[-1, -2, -1],
 </div>
 </div>
 </section>
-<section id="laplacian-of-gaussian-log">
-<h3>Laplacian of Gaussian (LoG)<a class="headerlink" href="#laplacian-of-gaussian-log" title="Link to this heading">#</a></h3>
-<p>The LoG filter first smooths the image with a Gaussian (controlled by <code class="docutils literal notranslate"><span class="pre">sigma</span></code>) and then applies a Laplacian to highlight rapid intensity changes.</p>
-<p>Use the slider to explore scale: smaller <code class="docutils literal notranslate"><span class="pre">sigma</span></code> emphasizes finer detail, while larger <code class="docutils literal notranslate"><span class="pre">sigma</span></code> highlights broader structures and suppresses noise.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO remove this</span>
-
-<span class="nd">@interact</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">apply_log_filter</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.5</span><span class="p">):</span>
-    <span class="c1"># LoG: smooth with Gaussian first, then apply Laplacian</span>
-    <span class="n">image_log</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">img_blobs</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">))</span>
-
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_blobs</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original: blobs.tif&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Absolute value improves visualization of positive/negative LoG response</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">image_log</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LoG Filter (sigma=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f4c856943db441c6907d12407cd90262", "version_major": 2, "version_minor": 0}</script></div>
-</div>
+<section id="further-gradient-filters">
+<h3>Further Gradient Filters<a class="headerlink" href="#further-gradient-filters" title="Link to this heading">#</a></h3>
+<p>TODO: where and why?</p>
 </section>
 <section id="id1">
 <h3>Questions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
@@ -844,25 +854,6 @@ Gy = [[-1, -2, -1],
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Otsu&#39;s threshold: 120
-</pre></div>
-</div>
-<img alt="../../_images/8c5f2198ecde2ac2dbe22539a1157c70e3d96ee988aac5564a13be9957d27291.png" src="../../_images/8c5f2198ecde2ac2dbe22539a1157c70e3d96ee988aac5564a13be9957d27291.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample pixel values from binary image:
-[[0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0]
- [1 1 1 1 0 0 0 0 0 0]
- [1 1 1 1 1 1 0 0 0 0]]
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="masking">
@@ -891,9 +882,6 @@ Gy = [[-1, -2, -1],
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/6a3c5ca3b56ea96a3bcb46bc92bd1b7f2baa61495a99866a2cacd111eaf62211.png" src="../../_images/6a3c5ca3b56ea96a3bcb46bc92bd1b7f2baa61495a99866a2cacd111eaf62211.png" />
 </div>
 </div>
 </section>
@@ -928,9 +916,6 @@ Gy = [[-1, -2, -1],
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ecd1568863fab2c6d6ad962853c566df0c87fc188f22de908aa4ba45ad5deab9.png" src="../../_images/ecd1568863fab2c6d6ad962853c566df0c87fc188f22de908aa4ba45ad5deab9.png" />
-</div>
 </div>
 <section id="post-processing">
 <h3>Post-Processing<a class="headerlink" href="#post-processing" title="Link to this heading">#</a></h3>
@@ -942,12 +927,6 @@ Gy = [[-1, -2, -1],
 <span class="n">props</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">regionprops</span><span class="p">(</span><span class="n">label_image</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Possible properties: &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">([</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Possible properties: 
-[&#39;area&#39;, &#39;area_bbox&#39;, &#39;area_convex&#39;, &#39;area_filled&#39;, &#39;axis_major_length&#39;, &#39;axis_minor_length&#39;, &#39;bbox&#39;, &#39;centroid&#39;, &#39;centroid_local&#39;, &#39;centroid_weighted&#39;, &#39;centroid_weighted_local&#39;, &#39;coords&#39;, &#39;coords_scaled&#39;, &#39;eccentricity&#39;, &#39;equivalent_diameter_area&#39;, &#39;euler_number&#39;, &#39;extent&#39;, &#39;feret_diameter_max&#39;, &#39;image&#39;, &#39;image_convex&#39;, &#39;image_filled&#39;, &#39;image_intensity&#39;, &#39;inertia_tensor&#39;, &#39;inertia_tensor_eigvals&#39;, &#39;intensity_max&#39;, &#39;intensity_mean&#39;, &#39;intensity_median&#39;, &#39;intensity_min&#39;, &#39;intensity_std&#39;, &#39;label&#39;, &#39;moments&#39;, &#39;moments_central&#39;, &#39;moments_hu&#39;, &#39;moments_normalized&#39;, &#39;moments_weighted&#39;, &#39;moments_weighted_central&#39;, &#39;moments_weighted_hu&#39;, &#39;moments_weighted_normalized&#39;, &#39;num_pixels&#39;, &#39;orientation&#39;, &#39;perimeter&#39;, &#39;perimeter_crofton&#39;, &#39;slice&#39;, &#39;solidity&#39;]
 </pre></div>
 </div>
 </div>
@@ -994,13 +973,6 @@ Gy = [[-1, -2, -1],
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/ace0531c77a5e8500d6c2c4db1028b5c6a1f7a18f23bd4aff57128971b36dce0.png" src="../../_images/ace0531c77a5e8500d6c2c4db1028b5c6a1f7a18f23bd4aff57128971b36dce0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Labels to exclude (area &lt; 30): [32, 36, 59, 60]
-</pre></div>
-</div>
-<img alt="../../_images/4457b5836c4aa1129481fe04f63f4252b64cd6844838207bb3b4eed4131d2658.png" src="../../_images/4457b5836c4aa1129481fe04f63f4252b64cd6844838207bb3b4eed4131d2658.png" />
-</div>
 </div>
 </section>
 <section id="id2">
@@ -1036,13 +1008,6 @@ Gy = [[-1, -2, -1],
 <span class="c1"># Print summary statistics</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean blob area: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">areas</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> pixels&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean blob intensity: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mean_intensities</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of blobs detected: 60
-Mean blob area: 370.05 pixels
-Mean blob intensity: 191.16
 </pre></div>
 </div>
 </div>
@@ -1149,7 +1114,7 @@ Mean blob intensity: 191.16
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gaussian-filter">The Gaussian Filter</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-sharpening-filters">Gradient / Sharpening Filters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sobel-filter">Sobel Filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laplacian-of-gaussian-log">Laplacian of Gaussian (LoG)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-gradient-filters">Further Gradient Filters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Questions</a></li>
 </ul>
 </li>
