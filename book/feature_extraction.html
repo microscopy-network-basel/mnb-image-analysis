@@ -398,7 +398,6 @@ document.write(`
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">cellpose</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">cellpose.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">napari</span>
 
 <span class="c1"># Set seaborn defaults</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
@@ -408,7 +407,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_img</span> <span class="o">=</span> <span class="s2">&quot;../../data/rab9a-egfp-slice-cropped.tif&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_img</span> <span class="o">=</span> <span class="s2">&quot;../data/rab9a-egfp-slice-cropped.tif&quot;</span>
 <span class="c1"># We can use cellpose&#39;s imread function to read the image</span>
 <span class="n">img</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">raw_img</span><span class="p">)</span>
 
@@ -489,8 +488,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Measured diameter: 137.5 px
-Now running Cellpose on the nuclei with the measured diameter...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Now running Cellpose on the nuclei with the measured diameter...
 </pre></div>
 </div>
 </div>
@@ -525,7 +523,7 @@ Now running Cellpose on the nuclei with the measured diameter...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6cdbafd373f53b723ecbb2e7a754c277f755ab45a833c8f635af51b00d75fa39.png" src="../_images/6cdbafd373f53b723ecbb2e7a754c277f755ab45a833c8f635af51b00d75fa39.png" />
+<img alt="../_images/13c6dc68be6b349d75316ef469ba6fa64dc267a93bf3f5769ca1e441b0fcf497.png" src="../_images/13c6dc68be6b349d75316ef469ba6fa64dc267a93bf3f5769ca1e441b0fcf497.png" />
 </div>
 </div>
 </section>
@@ -624,7 +622,7 @@ Now running Cellpose on the nuclei with the measured diameter...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ca004a688d439e5486bb2c4e2d811df93fd869b8490b4b3b5f0c706a80e3618e.png" src="../_images/ca004a688d439e5486bb2c4e2d811df93fd869b8490b4b3b5f0c706a80e3618e.png" />
+<img alt="../_images/141da4217ed22ca93353c463d03e99c4bdc854dbb4cac99fb8a9a37f23b20716.png" src="../_images/141da4217ed22ca93353c463d03e99c4bdc854dbb4cac99fb8a9a37f23b20716.png" />
 </div>
 </div>
 <p>As you can see, the results are much better than the thresholding method. The
@@ -740,7 +738,7 @@ images for analysis.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/54fee05a6aac34a12743e92cc81ce7d9990388fe313264efe00ec598aef692a7.png" src="../_images/54fee05a6aac34a12743e92cc81ce7d9990388fe313264efe00ec598aef692a7.png" />
+<img alt="../_images/a22b7e429b88a57267061419a8d8ae45d48c88e2964bd6ed4e503301f6c1b394.png" src="../_images/a22b7e429b88a57267061419a8d8ae45d48c88e2964bd6ed4e503301f6c1b394.png" />
 </div>
 </div>
 </section>
@@ -812,48 +810,48 @@ segmented object. Common features include:</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>9468.0</td>
-      <td>368.43</td>
-      <td>155.25</td>
-      <td>848.34</td>
-      <td>1875.25</td>
-      <td>127.80</td>
+      <td>9131.0</td>
+      <td>359.85</td>
+      <td>155.31</td>
+      <td>847.76</td>
+      <td>1924.41</td>
+      <td>122.97</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>9884.0</td>
-      <td>383.46</td>
-      <td>214.62</td>
-      <td>669.49</td>
-      <td>1842.92</td>
-      <td>125.67</td>
+      <td>9782.0</td>
+      <td>374.63</td>
+      <td>215.19</td>
+      <td>669.71</td>
+      <td>1849.23</td>
+      <td>125.90</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>9034.0</td>
-      <td>374.19</td>
-      <td>227.52</td>
-      <td>1046.01</td>
-      <td>2477.79</td>
-      <td>132.02</td>
+      <td>9016.0</td>
+      <td>371.36</td>
+      <td>226.81</td>
+      <td>1045.77</td>
+      <td>2467.11</td>
+      <td>132.00</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>9245.0</td>
-      <td>374.82</td>
-      <td>276.87</td>
-      <td>897.69</td>
-      <td>1951.62</td>
-      <td>130.17</td>
+      <td>9092.0</td>
+      <td>370.92</td>
+      <td>277.43</td>
+      <td>897.39</td>
+      <td>1976.25</td>
+      <td>128.97</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>11213.0</td>
-      <td>407.55</td>
-      <td>320.78</td>
-      <td>68.09</td>
-      <td>1542.26</td>
-      <td>139.90</td>
+      <td>11504.0</td>
+      <td>410.03</td>
+      <td>320.99</td>
+      <td>67.04</td>
+      <td>1508.59</td>
+      <td>143.14</td>
     </tr>
   </tbody>
 </table>
@@ -1099,11 +1097,11 @@ segmented object. Common features include:</p>
       <td>225.21</td>
       <td>1</td>
       <td>1</td>
-      <td>9468.0</td>
-      <td>155.25</td>
-      <td>848.34</td>
-      <td>1875.25</td>
-      <td>391.02</td>
+      <td>9131.0</td>
+      <td>155.31</td>
+      <td>847.76</td>
+      <td>1924.41</td>
+      <td>374.05</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1117,11 +1115,11 @@ segmented object. Common features include:</p>
       <td>182.26</td>
       <td>3</td>
       <td>3</td>
-      <td>9034.0</td>
-      <td>227.52</td>
-      <td>1046.01</td>
-      <td>2477.79</td>
-      <td>354.68</td>
+      <td>9016.0</td>
+      <td>226.81</td>
+      <td>1045.77</td>
+      <td>2467.11</td>
+      <td>344.76</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1135,11 +1133,11 @@ segmented object. Common features include:</p>
       <td>264.39</td>
       <td>2</td>
       <td>2</td>
-      <td>9884.0</td>
-      <td>214.62</td>
-      <td>669.49</td>
-      <td>1842.92</td>
-      <td>478.80</td>
+      <td>9782.0</td>
+      <td>215.19</td>
+      <td>669.71</td>
+      <td>1849.23</td>
+      <td>476.10</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1151,13 +1149,13 @@ segmented object. Common features include:</p>
       <td>1005.74</td>
       <td>484.20</td>
       <td>358.43</td>
-      <td>10</td>
-      <td>10</td>
-      <td>10379.0</td>
-      <td>405.57</td>
-      <td>1271.62</td>
-      <td>2578.21</td>
-      <td>85.36</td>
+      <td>9</td>
+      <td>9</td>
+      <td>11190.0</td>
+      <td>404.92</td>
+      <td>1270.65</td>
+      <td>2601.78</td>
+      <td>106.44</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1171,11 +1169,11 @@ segmented object. Common features include:</p>
       <td>221.56</td>
       <td>4</td>
       <td>4</td>
-      <td>9245.0</td>
-      <td>276.87</td>
-      <td>897.69</td>
-      <td>1951.62</td>
-      <td>761.38</td>
+      <td>9092.0</td>
+      <td>277.43</td>
+      <td>897.39</td>
+      <td>1976.25</td>
+      <td>757.83</td>
     </tr>
   </tbody>
 </table>
@@ -1229,6 +1227,13 @@ segmented object. Common features include:</p>
 <span class="nb">print</span><span class="p">(</span>
     <span class="sa">f</span><span class="s2">&quot;Cells:  n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cell_areas</span><span class="p">)</span><span class="si">}</span><span class="s2">, mean area=</span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">cell_areas</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">cell_areas</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> px&quot;</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0256c69b6ac1d39c95efe2da00a19cde3a80bf08afde1214f9a888b8c941474d.png" src="../_images/0256c69b6ac1d39c95efe2da00a19cde3a80bf08afde1214f9a888b8c941474d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nuclei: n=20, mean area=11100.7 px
+Cells:  n=20, mean area=23618.5 px
 </pre></div>
 </div>
 </div>
@@ -1305,6 +1310,13 @@ The nuclei and cells show distinct area distributions. Nuclei appear to have a m
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/2b281e8de85886063f8e8cce7564e7bb829dc7e94788c9efb3a2d0c9e90ef830.png" src="../_images/2b281e8de85886063f8e8cce7564e7bb829dc7e94788c9efb3a2d0c9e90ef830.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Median Cell/Nuclei ratio: 2.13
+Median Cyto/Nuclei ratio: 1.13
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1342,6 +1354,9 @@ The nuclei and cells show distinct area distributions. Nuclei appear to have a m
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/574f774a8b25ea6b0c0bac00339ab6ad78c9d51b23d92b08c77839cb4daba086.png" src="../_images/574f774a8b25ea6b0c0bac00339ab6ad78c9d51b23d92b08c77839cb4daba086.png" />
 </div>
 </div>
 <p><strong>Answer B:</strong>
@@ -1394,6 +1409,13 @@ By sorting cells by size, we can see if the ratio remains constant. If the ratio
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/f6728a229b78f45a12920c97883c7cbc13f671e361d294be5ed5f2de588871a0.png" src="../_images/f6728a229b78f45a12920c97883c7cbc13f671e361d294be5ed5f2de588871a0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nuclei: n=20, mean=1943.40
+Cells:  n=20, mean=410.32
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Answer C:</strong>
 Mean intensity distributions reveal the concentration of signal in each compartment. A narrower peak suggests uniform protein expression across the population, while a broad or multi-modal distribution could indicate sub-populations of cells with different expression levels or metabolic states.</p>
@@ -1439,6 +1461,12 @@ Mean intensity distributions reveal the concentration of signal in each compartm
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/b4d5a85b15a552da1ed48dc754faca1524b3987f823e8287c728b985936e1789.png" src="../_images/b4d5a85b15a552da1ed48dc754faca1524b3987f823e8287c728b985936e1789.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: 0.26
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Answer D:</strong>
 If the trendline is flat or the correlation is low (near 0), it suggests that the concentration of the protein in Channel 3 is independent of how “crowded” the cell is by its nucleus. If the correlation is high, it might suggest that smaller, more compact cells (higher ratio) have higher metabolic concentrations.</p>
@@ -1473,6 +1501,12 @@ If the trendline is flat or the correlation is low (near 0), it suggests that th
 <span class="nb">print</span><span class="p">(</span>
     <span class="sa">f</span><span class="s2">&quot;Correlation coefficient: </span><span class="si">{</span><span class="n">df_matched</span><span class="p">[[</span><span class="s1">&#39;nuclei_intensity_mean_ch1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cell_intensity_mean_ch2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/80e243fb4aa2f8382978c825a21072976e0d37c723eddb763f0672596a8bf9cd.png" src="../_images/80e243fb4aa2f8382978c825a21072976e0d37c723eddb763f0672596a8bf9cd.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: 0.49
 </pre></div>
 </div>
 </div>
@@ -1517,6 +1551,12 @@ A high correlation (e.g., &gt; 0.8) often indicates that the signal is “leakin
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/d2e142511ecf553146c80755c2f26221fae6ea8073bd729cd6024f869046f3be.png" src="../_images/d2e142511ecf553146c80755c2f26221fae6ea8073bd729cd6024f869046f3be.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: -0.38
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Answer F:</strong>
 Roundness measures how circular a cell is. If rounder cells (closer to 1.0) show higher intensities, it might indicate that cells in suspension or mitotic cells (which ball up) have different expression levels than spread-out, elongated cells.</p>
@@ -1529,6 +1569,73 @@ Roundness measures how circular a cell is. If rounder cells (closer to 1.0) show
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overview of measured features:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cell_label</th>
+      <th>cell_area</th>
+      <th>nuclei_area</th>
+      <th>roundness</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>19747.0</td>
+      <td>9131.0</td>
+      <td>0.736895</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>17765.0</td>
+      <td>9016.0</td>
+      <td>0.851034</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>22773.0</td>
+      <td>9782.0</td>
+      <td>0.606094</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>31747.0</td>
+      <td>11190.0</td>
+      <td>0.556643</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>18662.0</td>
+      <td>9092.0</td>
+      <td>0.646976</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
