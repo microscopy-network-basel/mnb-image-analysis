@@ -606,7 +606,8 @@ document.write(`
 <p>In other words: the average kernel operation adds all 9 pixels together, then divides by 9 to get the average value at each pixel entry of the image.</p>
 <section id="padding">
 <h4>Padding<a class="headerlink" href="#padding" title="Link to this heading">#</a></h4>
-<p><img alt="image.png" src="materials/image_processing/attachment:image.png" /></p>
+<a class="reference internal image-reference" href="../../_images/filter_corner.png"><img alt="../../_images/filter_corner.png" src="../../_images/filter_corner.png" style="width: 50%;" />
+</a>
 <p>For the edge values of the image, the e.g. 3x3 kernel would “hang off” the side, meaning some of the pixels needed for the calculation are missing. To fix this, we use a technique called <strong>padding</strong>. We “mirror” the existing pixels at the edge to fill the gaps. This ensures the average is calculated using values similar to the real data, and that the output matches the input image size.</p>
 </section>
 </section>
@@ -1065,7 +1066,7 @@ Mean blob intensity: 191.16
 <span class="c1"># ..your code here..</span>
 
 <span class="c1"># Choose just the nuclei channel (channel 1, Python is 0-based!) for the next steps</span>
-<span class="c1"># Note: this is a z-stack, so you need to choose the slice also!</span>
+<span class="c1"># Note: this is a z-stack, so you need to choose the slice also! img = img[20], for example - then choose the channel</span>
 
 
 <span class="c1"># Threshold the nuclei channel and visualize the binary</span>
