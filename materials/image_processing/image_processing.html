@@ -404,6 +404,7 @@ document.write(`
 <p>In blocks 1 &amp; 2, we looked at what images are, and how they can be shown and handled in Python. In the following block, we dive more deeply into how to process an image post-acquisition.</p>
 <p>A common goal in bioimage analysis is to identify structures we care about, and ignore things from the background. We may want to detect the number of cells or nuclei in an image, or count the number of fluorescent spots and measure their properties.</p>
 <p>A simple workflow is: <strong>threshold → clean → measure</strong>. We start with thresholding to separate foreground from background and get a rough idea of interesting objects. Then we use filtering and cleanup (e.g., smoothing or removing small objects) to reduce noise and fix small errors. After that, we can create objects (ROIs) and measure size, shape, and intensity.</p>
+<p>All code cells are clearly commented to explain what new lines do!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -411,9 +412,8 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">io</span><span class="p">,</span> <span class="n">morphology</span><span class="p">,</span> <span class="n">measure</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tifffile</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">widgets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">interact</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">exposure</span>
-<span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1034,11 +1034,9 @@ Mean blob intensity: 191.16
 <li><p>How many channels and z-slices does the image have? Extract all channels and visualize them.</p></li>
 <li><p>For the nuclei channel, find a suitable threshold (manual or automatic) and binarize the image. Visualize the binary image.</p></li>
 <li><p>Create a label image from the binary image. Are there any objects you wish to remove?</p></li>
-<li><p>Count how many nuclei there are present in this image.</p></li>
-<li><p>What is the average expression of channel 1 in the nuclei? (<strong>Note</strong>: python is 0-based, so channel 1 is actually channel 0!)</p></li>
+<li><p>Count how many nuclei there are present in this image, and print what the average area is of all nuclei.</p></li>
 <li><p>Examine the cytoplasm channel. Could we use thresholding to create cell masks for this data?</p></li>
 </ol>
-<p>–&gt; Hint: you can set the label image to a raw image of a secondary channel to get measurements in that channel inside the objects of the first channel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">data</span>
@@ -1064,15 +1062,9 @@ Mean blob intensity: 191.16
 <span class="c1"># What is the mean area of all nuclei? Hint: use np.mean(areas)</span>
 
 
-<span class="c1"># Examine the cyto channel - can you create a mask with our methods? </span>
+<span class="c1"># Examine the cyto channel - can you create a mask with our methods? What are the issues you see here?</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7400bb4d67d0&gt;
-</pre></div>
-</div>
-<img alt="../../_images/81033f3a1bd5172e88810f03596ca95665b69fd6cd5fc0c2e75ce92878f574d3.png" src="../../_images/81033f3a1bd5172e88810f03596ca95665b69fd6cd5fc0c2e75ce92878f574d3.png" />
 </div>
 </div>
 </section>
