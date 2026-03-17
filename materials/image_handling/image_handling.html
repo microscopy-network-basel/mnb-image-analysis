@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Block 2: Image Handling in Python &#8212; Introduction to (Bio-)Image Analysis with Python</title>
+    <title>If you see this, you are up to date! &#8212; Introduction to (Bio-)Image Analysis with Python</title>
   
   
   
@@ -192,7 +192,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../book/image_analysis_intro.html">Introduction to Image Analysis</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../../book/notebooks.html">Image processing and analysis with Python</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Block 2: Image Handling in Python</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">If you see this, you are up to date!</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../../book/image_processing_book.html">Block 3: Preprocessing &amp; Basic Segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../book/feature_extraction.html">Block 4: Deep-Learning and Feature Extraction</a></li>
 </ul>
@@ -341,7 +342,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Block 2: Image Handling in Python</h1>
+    <h1>If you see this, you are up to date!</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -351,6 +352,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">If you see this, you are up to date!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#block-2-image-handling-in-python">Block 2: Image Handling in Python</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-the-building-blocks-of-images">1. Arrays — The Building Blocks of Images</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-lists-to-arrays">1.1 From Lists to Arrays</a></li>
@@ -401,6 +404,9 @@ document.write(`
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -411,7 +417,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="block-2-image-handling-in-python">
+  <section class="tex2jax_ignore mathjax_ignore" id="if-you-see-this-you-are-up-to-date">
+<h1>If you see this, you are up to date!<a class="headerlink" href="#if-you-see-this-you-are-up-to-date" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="block-2-image-handling-in-python">
 <h1>Block 2: Image Handling in Python<a class="headerlink" href="#block-2-image-handling-in-python" title="Link to this heading">#</a></h1>
 <p>Welcome to the <strong>Image Handling</strong> session! In this notebook, you will learn how to work with images in Python — from understanding arrays to opening, inspecting, and displaying microscopy data.</p>
 <section id="learning-objectives">
@@ -644,17 +653,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a + b =
-[[11 22]
- [33 44]]
-
-a - b =
-[[ 9 18]
- [27 36]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -764,12 +762,6 @@ An image is nothing more than an array of numbers, where each number represents 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x244aac5a9d0&gt;
-</pre></div>
-</div>
-<img alt="../../_images/d280742e856095a445e7cbcc67dead666935beafeab8597fbbcb63bfe2f0bd5e.png" src="../../_images/d280742e856095a445e7cbcc67dead666935beafeab8597fbbcb63bfe2f0bd5e.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,12 +769,6 @@ An image is nothing more than an array of numbers, where each number represents 
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x244aa93f750&gt;
-</pre></div>
-</div>
-<img alt="../../_images/361fbe07d3d26d455daf2741ef1e20af7b1ed99377636d15125052a0c901e56b.png" src="../../_images/361fbe07d3d26d455daf2741ef1e20af7b1ed99377636d15125052a0c901e56b.png" />
 </div>
 </div>
 </section>
@@ -1037,17 +1023,6 @@ An image is nothing more than an array of numbers, where each number represents 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape (labeled): &lt;Dimensions [T: 1, C: 1, Z: 60, Y: 256, X: 256]&gt;
-Shape (raw):     (1, 1, 60, 256, 256)
-Data type:       uint16
-
-Dimension order: TCZYX
-
-NumPy array shape: (1, 1, 60, 256, 256)
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="tifffile-vs-bioio-when-to-use-which">
@@ -1139,9 +1114,6 @@ NumPy array shape: (1, 1, 60, 256, 256)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/541b2d6376406074835e4cf19e8242ca570be1b8cbc359f7127ef95d8db1ddc4.png" src="../../_images/541b2d6376406074835e4cf19e8242ca570be1b8cbc359f7127ef95d8db1ddc4.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1154,9 +1126,6 @@ NumPy array shape: (1, 1, 60, 256, 256)
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/d948c72ff3be0b40d40afb0443905a3763881bb5d14b744ddb0ab1f509c8c3a0.png" src="../../_images/d948c72ff3be0b40d40afb0443905a3763881bb5d14b744ddb0ab1f509c8c3a0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1172,9 +1141,6 @@ NumPy array shape: (1, 1, 60, 256, 256)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/875dc26ea625fa03c0fb0775fa65bd6e273843f48d749b66ea5f99bdf71b2c7e.png" src="../../_images/875dc26ea625fa03c0fb0775fa65bd6e273843f48d749b66ea5f99bdf71b2c7e.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1189,9 +1155,6 @@ NumPy array shape: (1, 1, 60, 256, 256)
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/7ed2a8a2f1b5f7bad58e7fe98410ed1db92c71ad40d4ec57c087be84b5516eaa.png" src="../../_images/7ed2a8a2f1b5f7bad58e7fe98410ed1db92c71ad40d4ec57c087be84b5516eaa.png" />
 </div>
 </div>
 </section>
@@ -1226,9 +1189,6 @@ NumPy array shape: (1, 1, 60, 256, 256)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/6613b73bb82fc1d8e55a0c3909daee519eb4d7eb1415f27c822a50d5fe944342.png" src="../../_images/6613b73bb82fc1d8e55a0c3909daee519eb4d7eb1415f27c822a50d5fe944342.png" />
-</div>
 </div>
 </section>
 <section id="overlay-images-to-see-multiple-channels-at-once">
@@ -1242,9 +1202,6 @@ NumPy array shape: (1, 1, 60, 256, 256)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/8806e1dba8b91c9ac4ab0866e953a9281e4019f2cca07f59b3057a4cff38c4ef.png" src="../../_images/8806e1dba8b91c9ac4ab0866e953a9281e4019f2cca07f59b3057a4cff38c4ef.png" />
-</div>
 </div>
 </section>
 <section id="rgb-example">
@@ -1256,23 +1213,12 @@ NumPy array shape: (1, 1, 60, 256, 256)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2048, 2048, 3)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x244acefcbd0&gt;
-</pre></div>
-</div>
-<img alt="../../_images/8e0ca33a0ad0d344e96f79125f6d616e891ab2a0090ccea66e2892ae9ab834a7.png" src="../../_images/8e0ca33a0ad0d344e96f79125f6d616e891ab2a0090ccea66e2892ae9ab834a7.png" />
 </div>
 </div>
 <div class="tip admonition">
@@ -1533,6 +1479,8 @@ NumPy array shape: (1, 1, 60, 256, 256)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">If you see this, you are up to date!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#block-2-image-handling-in-python">Block 2: Image Handling in Python</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-the-building-blocks-of-images">1. Arrays — The Building Blocks of Images</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-lists-to-arrays">1.1 From Lists to Arrays</a></li>
@@ -1583,6 +1531,9 @@ NumPy array shape: (1, 1, 60, 256, 256)
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
