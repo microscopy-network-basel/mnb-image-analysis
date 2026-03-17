@@ -193,7 +193,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../book/image_analysis_intro.html">Introduction to Image Analysis</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../../book/notebooks.html">Image processing and analysis with Python</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Block 2: Image Handling in Python</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="../../book/image_processing_book.html">Block 3: Preprocessing &amp; Basic Segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../book/feature_extraction.html">Block 4: Deep-Learning and Feature Extraction</a></li>
 </ul>
@@ -352,7 +351,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Block 2: Image Handling in Python</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-the-building-blocks-of-images">1. Arrays — The Building Blocks of Images</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-lists-to-arrays">1.1 From Lists to Arrays</a></li>
@@ -361,6 +359,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">1.4 Indexing and Slicing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-array-math">1.5 Simple Array Math</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself-arrays">✏️ Try It Yourself — Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-1">Solution 1</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#images-are-arrays">2. Images Are Arrays</a><ul class="visible nav section-nav flex-column">
@@ -369,6 +368,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-real-image">2.3 A Real Image</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-exploration-browsing-a-z-stack">2.4 Interactive Exploration — Browsing a Z-Stack</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself-images-as-arrays">✏️ Try It Yourself — Images as Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-2">Solution 2</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-images-with-python">3. Opening Images with Python</a><ul class="visible nav section-nav flex-column">
@@ -387,12 +387,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-images-to-see-multiple-channels-at-once">Overlay images to see multiple channels at once</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rgb-example">4.3 RGB example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself-matplotlib">✏️ Try It Yourself — Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-3">Solution 3</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-project-image-juxtaposition">5. 🧪 Mini-Project: Image Juxtaposition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-mini-project">Solution Mini-project</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#add-some-more-steps-to-the-project-like-slicing-ranges-or-creating-noise-and-overlaying">Add some more steps to the project like slicing ranges or creating noise and overlaying</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-project-image-juxtaposition">5. 🧪 Mini-Project: Image Juxtaposition</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-further-reading">6. Recap &amp; Further Reading</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned-today">What You Learned Today</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading-resources">Further Reading &amp; Resources</a></li>
@@ -400,9 +401,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -426,7 +424,12 @@ document.write(`
 <li><p>Open and inspect microscopy images using <code class="docutils literal notranslate"><span class="pre">tifffile</span></code> and <code class="docutils literal notranslate"><span class="pre">bioio</span></code></p></li>
 <li><p>Display and compare images using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
 </ul>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -438,6 +441,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <hr class="docutils" />
@@ -453,12 +457,6 @@ document.write(`
 <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 50, 100, 150, 200, 255]
-&lt;class &#39;list&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -479,13 +477,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0, 0, 0, 0, 0], [0, 255, 255, 255, 0], [0, 255, 0, 255, 0], [0, 255, 255, 255, 0], [0, 0, 0, 0, 0]]
-Number of rows: 5
-Number of columns: 5
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -499,14 +490,6 @@ Number of columns: 5
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of rows: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rgb_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of columns: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rgb_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of channels: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rgb_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[255, 0, 0], [255, 0, 0], [255, 0, 0]], [[0, 255, 0], [0, 255, 0], [0, 255, 0]], [[0, 0, 255], [0, 0, 255], [0, 0, 255]]]
-Number of rows: 3
-Number of columns: 3
-Number of channels: 3
 </pre></div>
 </div>
 </div>
@@ -524,18 +507,6 @@ Number of channels: 3
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape: </span><span class="si">{</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># (rows, columns)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data type: </span><span class="si">{</span><span class="n">image</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># integer type</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Min: </span><span class="si">{</span><span class="n">image</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">, Max: </span><span class="si">{</span><span class="n">image</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[  0   0   0   0   0]
- [  0 255 255 255   0]
- [  0 255   0 255   0]
- [  0 255 255 255   0]
- [  0   0   0   0   0]]
-Shape: (5, 5)
-Data type: int64
-Min: 0, Max: 255
 </pre></div>
 </div>
 </div>
@@ -612,16 +583,6 @@ Min: 0, Max: 255
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s use our 5x5 image from before</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Full image:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Full image:
-[[  0   0   0   0   0]
- [  0 255 255 255   0]
- [  0 255   0 255   0]
- [  0 255 255 255   0]
- [  0   0   0   0   0]]
 </pre></div>
 </div>
 </div>
@@ -745,6 +706,9 @@ Min: 0, Max: 255
 </div>
 </div>
 </div>
+</section>
+<section id="solution-1">
+<h3>Solution 1<a class="headerlink" href="#solution-1" title="Link to this heading">#</a></h3>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Create 6x6 zeros</span>
@@ -934,6 +898,9 @@ An image is nothing more than an array of numbers, where each number represents 
 </div>
 </div>
 </div>
+</section>
+<section id="solution-2">
+<h3>Solution 2<a class="headerlink" href="#solution-2" title="Link to this heading">#</a></h3>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. First z-slice, membrane channel</span>
@@ -1250,17 +1217,26 @@ An image is nothing more than an array of numbers, where each number represents 
 </div>
 </div>
 </div>
+</section>
+<section id="solution-3">
+<h3>Solution 3<a class="headerlink" href="#solution-3" title="Link to this heading">#</a></h3>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-<span class="n">z_slices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">z_slices</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">z</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z = </span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Red channel&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Nuclei at different depths&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greens&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Green channel&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Blue channel&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;RGB channels&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1268,9 +1244,6 @@ An image is nothing more than an array of numbers, where each number represents 
 </div>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="add-some-more-steps-to-the-project-like-slicing-ranges-or-creating-noise-and-overlaying">
-<h1>Add some more steps to the project like slicing ranges or creating noise and overlaying<a class="headerlink" href="#add-some-more-steps-to-the-project-like-slicing-ranges-or-creating-noise-and-overlaying" title="Link to this heading">#</a></h1>
 <hr class="docutils" />
 <section id="mini-project-image-juxtaposition">
 <h2>5. 🧪 Mini-Project: Image Juxtaposition<a class="headerlink" href="#mini-project-image-juxtaposition" title="Link to this heading">#</a></h2>
@@ -1296,6 +1269,8 @@ An image is nothing more than an array of numbers, where each number represents 
 </div>
 </div>
 </div>
+<section id="solution-mini-project">
+<h3>Solution Mini-project<a class="headerlink" href="#solution-mini-project" title="Link to this heading">#</a></h3>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Open the nuclei stack</span>
@@ -1339,6 +1314,7 @@ An image is nothing more than an array of numbers, where each number represents 
 </pre></div>
 </div>
 </div>
+</section>
 </section>
 <hr class="docutils" />
 <section id="recap-further-reading">
@@ -1384,6 +1360,7 @@ An image is nothing more than an array of numbers, where each number represents 
 <li><p>📖 <a class="reference external" href="https://github.com/bioio-devs/bioio">BioIO documentation</a></p></li>
 <li><p>📖 <a class="reference external" href="https://napari.org/">napari</a> — Interactive multi-dimensional image viewer for Python</p></li>
 <li><p>📖 <a class="reference external" href="https://ngff.openmicroscopy.org/">OME-ZARR / NGFF</a> — Next-generation file formats for bioimaging</p></li>
+<li><p>📖 <a class="reference external" href="https://automatetheboringstuff.com/">Python Introduction - Automate the boring stuff</a></p></li>
 </ul>
 </section>
 <hr class="docutils" />
@@ -1470,7 +1447,6 @@ An image is nothing more than an array of numbers, where each number represents 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Block 2: Image Handling in Python</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-the-building-blocks-of-images">1. Arrays — The Building Blocks of Images</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-lists-to-arrays">1.1 From Lists to Arrays</a></li>
@@ -1479,6 +1455,7 @@ An image is nothing more than an array of numbers, where each number represents 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">1.4 Indexing and Slicing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-array-math">1.5 Simple Array Math</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself-arrays">✏️ Try It Yourself — Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-1">Solution 1</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#images-are-arrays">2. Images Are Arrays</a><ul class="visible nav section-nav flex-column">
@@ -1487,6 +1464,7 @@ An image is nothing more than an array of numbers, where each number represents 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-real-image">2.3 A Real Image</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-exploration-browsing-a-z-stack">2.4 Interactive Exploration — Browsing a Z-Stack</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself-images-as-arrays">✏️ Try It Yourself — Images as Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-2">Solution 2</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-images-with-python">3. Opening Images with Python</a><ul class="visible nav section-nav flex-column">
@@ -1505,12 +1483,13 @@ An image is nothing more than an array of numbers, where each number represents 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-images-to-see-multiple-channels-at-once">Overlay images to see multiple channels at once</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rgb-example">4.3 RGB example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-yourself-matplotlib">✏️ Try It Yourself — Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-3">Solution 3</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-project-image-juxtaposition">5. 🧪 Mini-Project: Image Juxtaposition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-mini-project">Solution Mini-project</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#add-some-more-steps-to-the-project-like-slicing-ranges-or-creating-noise-and-overlaying">Add some more steps to the project like slicing ranges or creating noise and overlaying</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-project-image-juxtaposition">5. 🧪 Mini-Project: Image Juxtaposition</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-further-reading">6. Recap &amp; Further Reading</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned-today">What You Learned Today</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading-resources">Further Reading &amp; Resources</a></li>
@@ -1518,9 +1497,6 @@ An image is nothing more than an array of numbers, where each number represents 
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
